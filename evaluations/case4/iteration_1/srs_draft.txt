@@ -1,0 +1,104 @@
+# Software Requirements Specification (SRS)
+## Food Ordering System
+
+### 1. Introduction
+This document specifies the requirements for a Food Ordering System that enables customers to browse restaurant menus, place orders, make payments, and track deliveries through web and mobile interfaces. The system also provides restaurant staff with tools to manage menus, process orders, and update order statuses. This SRS serves as the foundation for system design, development, and testing.
+
+### 2. Functional Requirements
+
+#### FR1: User Account Management
+1.1. The system SHALL allow new users to create an account by providing email address, password, and phone number.
+1.2. The system SHALL verify email addresses through confirmation links sent to the provided email.
+1.3. The system SHALL allow users to log in using email/password or social media accounts (Google, Facebook).
+1.4. The system SHALL allow users to save and manage multiple delivery addresses in their profile.
+1.5. The system SHALL allow users to view and edit their personal information and preferences.
+
+#### FR2: Restaurant Discovery and Menu Browsing
+2.1. The system SHALL display restaurants based on user's delivery location.
+2.2. The system SHALL allow filtering restaurants by cuisine type, delivery time, rating, and price range.
+2.3. The system SHALL display restaurant details including name, rating, delivery time, minimum order amount, and delivery fee.
+2.4. The system SHALL display menu items with name, description, price, dietary information, and availability status.
+2.5. The system SHALL allow users to search for specific dishes or ingredients across all available restaurants.
+
+#### FR3: Order Creation and Management
+3.1. The system SHALL allow users to add items to a shopping cart with specified quantities.
+3.2. The system SHALL calculate and display order subtotal, taxes, delivery fees, and total amount in real-time.
+3.3. The system SHALL allow users to apply promo codes during checkout.
+3.4. The system SHALL validate delivery address and estimated delivery time before order confirmation.
+3.5. The system SHALL generate a unique order ID for each successful order.
+
+#### FR4: Payment Processing
+4.1. The system SHALL support multiple payment methods: credit/debit cards, digital wallets, and cash on delivery.
+4.2. The system SHALL securely process payments through PCI-DSS compliant payment gateways.
+4.3. The system SHALL provide payment confirmation and receipt upon successful transaction.
+4.4. The system SHALL handle payment failures and provide appropriate error messages to users.
+
+#### FR5: Order Tracking and Notifications
+5.1. The system SHALL display real-time order status: Ordered, Confirmed, Preparing, Out for Delivery, Delivered.
+5.2. The system SHALL send push notifications/SMS/email for order status updates.
+5.3. The system SHALL provide estimated delivery time and live tracking map when available.
+5.4. The system SHALL allow users to contact restaurant or delivery personnel through the app.
+
+#### FR6: Restaurant Management Interface
+6.1. The system SHALL provide restaurant staff with login credentials to access the management portal.
+6.2. The system SHALL allow restaurant staff to update menu items, prices, and availability.
+6.3. The system SHALL display incoming orders with details and allow status updates.
+6.4. The system SHALL generate sales reports and analytics for restaurant owners.
+6.5. The system SHALL allow restaurant staff to manage operating hours and delivery zones.
+
+#### FR7: Review and Rating System
+7.1. The system SHALL allow users to rate restaurants and delivery service on a 1-5 scale.
+7.2. The system SHALL allow users to write text reviews for restaurants and specific orders.
+7.3. The system SHALL display average ratings and reviews for each restaurant.
+7.4. The system SHALL allow restaurant owners to respond to customer reviews.
+
+### 3. Non-Functional Requirements
+
+#### NFR1: Performance Requirements
+1.1. The system SHALL load restaurant listings within 2 seconds for 95% of requests under normal load.
+1.2. The system SHALL process payment transactions within 5 seconds for 99% of requests.
+1.3. The system SHALL support up to 10,000 concurrent users during peak hours.
+1.4. Order status updates SHALL be reflected across all interfaces within 30 seconds.
+
+#### NFR2: Reliability Requirements
+2.1. The system SHALL maintain 99.9% uptime during business hours (6 AM - 12 AM local time).
+2.2. The system SHALL have data backup procedures to prevent loss of order history and user data.
+2.3. The system SHALL implement transaction rollback mechanisms for failed payment processes.
+2.4. The system SHALL maintain order consistency across all user sessions and devices.
+
+#### NFR3: Security Requirements
+3.1. The system SHALL encrypt all sensitive user data (passwords, payment information) using AES-256 encryption.
+3.2. The system SHALL implement role-based access control for different user types (customer, restaurant staff, admin).
+3.3. The system SHALL comply with GDPR and CCPA regulations for data privacy.
+3.4. The system SHALL implement rate limiting and DDoS protection mechanisms.
+3.5. The system SHALL conduct regular security audits and vulnerability assessments.
+
+#### NFR4: Usability Requirements
+4.1. The system SHALL have an average System Usability Scale (SUS) score of 80 or higher.
+4.2. First-time users SHALL be able to place an order within 3 minutes without training.
+4.3. The interface SHALL be accessible according to WCAG 2.1 AA standards.
+4.4. The mobile application SHALL maintain consistent functionality across iOS and Android platforms.
+
+#### NFR5: Scalability Requirements
+5.1. The system architecture SHALL support horizontal scaling to accommodate 200% growth in user base.
+5.2. Database queries SHALL maintain performance standards with up to 1 million order records.
+5.3. The system SHALL support integration with new payment gateways and delivery services.
+
+### 4. Constraints & Assumptions
+
+#### Constraints
+1. The system must integrate with existing payment gateways (Stripe, PayPal) without modifying their APIs.
+2. Development must use React Native for mobile apps and Node.js for backend services.
+3. The system must support multiple languages (English, Spanish, French) in phase 2.
+4. All data storage must comply with EU data residency requirements for European customers.
+5. The initial release must support iOS 13+ and Android 8+ mobile devices.
+
+#### Assumptions
+1. Restaurant partners will have reliable internet connections to receive and process orders.
+2. Users will have smartphones with GPS capabilities for location services.
+3. Payment gateway services will be available 99.9% of the time.
+4. Restaurant menus and prices will be updated regularly by restaurant staff.
+5. Delivery personnel will use their own navigation apps for route guidance.
+6. Users understand basic mobile application navigation and payment procedures.
+7. The system will operate in urban areas with adequate network coverage for real-time tracking.
+8. Restaurant partners will maintain sufficient inventory to fulfill displayed menu items.

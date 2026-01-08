@@ -50,7 +50,7 @@ def run(workspace, llm):
 
 	pass_condition = check_result.strip().upper().startswith("PASS")
 	if not pass_condition:
-		logging.info("Checker found issues → refinement triggered")
+		logging.info("Checker found issues -> refinement triggered")
 		iteration += 1
 
 		workspace.requirements += "\n\nIssues raised by checker:\n" + check_result

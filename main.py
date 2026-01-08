@@ -8,15 +8,8 @@ from workspace import Workspace
 def main():
 	setup_logger()
 
-	# workspace = Workspace(
-	# 	idea="I want to develop a smart home control system that allows homeowners "
-	# 	"to monitor and control household devices remotely."
-	# )
 	workspace = Workspace(
-		idea="I want to develop learning management system that allows students "
-		"to access course materials, submit assignments, and receive feedback. and dont forget my students are kids"
-	)
-
+		idea="I want to develop hospital management system that allows hospital staff to manage patient records, schedule appointments, and track inventory")
 	llm = get_llm()
 	run(workspace, llm)
 

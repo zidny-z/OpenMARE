@@ -1,0 +1,60 @@
+### **Assumptions**
+*   The system is a mobile application.
+*   "Activities" refer to user-defined health-related actions such as walking, drinking water, meditating, or sleeping.
+*   "Progress" refers to a user's advancement toward their self-defined goals.
+*   A "Minimum Viable Product" (MVP) scope will be defined separately, prioritizing the requirements below.
+
+---
+
+### **Functional Requirements**
+
+**FR1: User Onboarding & Goal Setup**
+*   FR1.1: The system SHALL allow a new user to create a personal account.
+*   FR1.2: The system SHALL guide a new user through a process to create their first personal health goal within the initial app session.
+*   FR1.3: The system SHALL allow the user to define a goal type (e.g., steps, water, sleep duration), a target value (e.g., 8000, 2 liters, 7 hours), and a recurrence period (e.g., daily, weekly).
+
+**FR2: Activity Logging**
+*   FR2.1: The system SHALL provide a method for the user to manually log the completion of an activity.
+*   FR2.2: The system SHALL provide distinct logging interfaces or input methods appropriate for different activity types (e.g., numeric entry for water, timer/duration for meditation, step counter integration for walking).
+*   FR2.3: The system SHALL record the date, time, and quantified value for each logged activity.
+
+**FR3: Progress Tracking & Visualization**
+*   FR3.1: The system SHALL calculate and display the user's progress toward each active goal (e.g., "1.5L / 2.0L").
+*   FR3.2: The system SHALL display a visual representation of historical progress for each goal (e.g., a simple chart showing daily values over a week).
+*   FR3.3: The system SHALL track and display a "streak" count representing consecutive days on which a user logged progress toward a specific goal or used the app.
+*   FR3.4: The system SHALL award and display digital badges to the user upon achieving predefined milestones (e.g., "7-Day Streak," "Goal Met 10 Times").
+
+**FR4: Personalization & Management**
+*   FR4.1: The system SHALL allow the user to create, modify, and deactivate personal health goals at any time.
+*   FR4.2: The system SHALL allow the user to view a list of all their active and inactive goals.
+
+**FR5: Notifications**
+*   FR5.1: The system SHALL allow the user to set the time and frequency for reminders to log specific activities.
+*   FR5.2: The system SHALL allow the user to enable or disable all notifications.
+*   FR5.3: The system SHALL trigger a push notification at the user-scheduled times for activity logging reminders.
+
+---
+
+### **Non-Functional Requirements**
+
+**NFR1: Usability & User Experience**
+*   NFR1.1: The system SHALL be designed so that a new user can complete initial onboarding and log their first activity within 3 minutes of opening the app for the first time.
+*   NFR1.2: The system's primary navigation and core functions (logging, viewing progress) SHALL be accessible within two taps from the main screen.
+*   NFR1.3: The system's interface and copy SHALL use non-technical, encouraging language to motivate continued use.
+
+**NFR2: Performance**
+*   NFR2.1: The system SHALL launch from a closed state to a usable main screen in under 2 seconds on supported mobile devices.
+*   NFR2.2: User interactions (e.g., tapping to log an activity) SHALL provide visual feedback within 0.5 seconds.
+
+**NFR3: Data Management & Privacy**
+*   NFR3.1: The system SHALL store all user data, including activity logs and goals, securely.
+*   NFR3.2: The system SHALL present a privacy policy to the user during onboarding that clearly states what personal and health data is collected and how it is used.
+*   NFR3.3: The system's data collection and storage practices SHALL comply with the prevailing privacy guidelines of the distribution platform(s) (e.g., Apple App Store, Google Play Store).
+
+**NFR4: Reliability**
+*   NFR4.1: The system SHALL maintain a user's activity log and progress data without loss between app sessions.
+*   NFR4.2: Scheduled notifications SHALL be delivered with 99% reliability under normal device operating conditions.
+
+**NFR5: Implementation Constraints**
+*   NFR5.1: The initial release of the system SHALL be developed and launched within the agreed MVP budget and timeline.
+*   NFR5.2: The target platform(s) for the initial release (iOS, Android, or both) SHALL be determined by a separate feasibility analysis considering target audience and the constraints in NFR5.1.

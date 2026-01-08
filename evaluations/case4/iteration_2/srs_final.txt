@@ -1,0 +1,253 @@
+# Software Requirements Specification (SRS): Food Ordering System
+
+## 1. Introduction
+This document specifies the requirements for a comprehensive Food Ordering System. The system enables customers to browse restaurant menus, place and pay for orders, and track delivery in real-time. It provides separate interfaces for customers, restaurant staff, delivery personnel, and system administrators. The system integrates with external payment processors and notification services.
+
+## 2. Functional Requirements
+
+### 2.1 Customer Management
+**FR-CM1: User Account Management**
+1.1. The system SHALL allow a new customer to create an account by providing an email address, password, and phone number.
+1.2. The system SHALL allow customers to log in using their email and password.
+1.3. The system SHALL allow customers to reset their password via email verification.
+1.4. The system SHALL allow customers to save multiple delivery addresses and payment methods to their profile.
+1.5. The system SHALL allow customers to view and edit their profile information.
+
+**FR-CM2: Guest Checkout**
+2.1. The system SHALL allow customers to place orders without creating an account.
+2.2. For guest orders, the system SHALL require customers to provide an email address and phone number for order communication.
+
+### 2.2 Menu Browsing & Selection
+**FR-MB1: Restaurant Discovery**
+1.1. The system SHALL display a list of participating restaurants to the customer, including name, cuisine type, delivery time estimate, and average rating.
+1.2. The system SHALL allow customers to filter restaurants by cuisine type, delivery time, minimum order amount, and customer rating.
+1.3. The system SHALL allow customers to search for restaurants by name or cuisine type.
+
+**FR-MB2: Menu Interaction**
+2.1. The system SHALL display a restaurant's menu organized into logical categories (e.g., Appetizers, Main Courses, Desserts).
+2.2. For each menu item, the system SHALL display its name, description, price, dietary tags (vegetarian, vegan, gluten-free), and availability status.
+2.3. The system SHALL allow customers to filter menu items by dietary requirements, price range, or popularity.
+2.4. The system SHALL allow customers to search for specific menu items within a restaurant's menu.
+2.5. The system SHALL allow customers to select a menu item, specify quantity, and add special preparation instructions.
+2.6. The system SHALL display recommended add-on items when a customer selects a main item.
+
+### 2.3 Order Management
+**FR-OM1: Shopping Cart**
+1.1. The system SHALL maintain a shopping cart that displays all selected items, quantities, special instructions, item subtotals, and running total.
+1.2. The system SHALL allow customers to modify item quantities, remove items, or clear the entire cart before checkout.
+1.3. The system SHALL save the shopping cart contents for logged-in customers across browser sessions.
+
+**FR-OM2: Order Placement**
+2.1. The system SHALL require customers to provide a valid delivery address, contact phone number, and preferred delivery time before placing an order.
+2.2. The system SHALL calculate and display the final order total including item costs, taxes, delivery fee, and any applicable service charges.
+2.3. The system SHALL display an estimated delivery time before order confirmation.
+2.4. The system SHALL generate a unique order confirmation number for each successfully placed order.
+2.5. The system SHALL send an order confirmation email/SMS to the customer immediately after successful order placement.
+
+**FR-OM3: Order Modifications & Cancellations**
+3.1. The system SHALL allow customers to cancel an order within 5 minutes of placement, provided the restaurant has not begun preparation.
+3.2. The system SHALL allow customers to request order modifications (add/remove items) by contacting customer support through the system interface.
+3.3. The system SHALL notify the restaurant immediately when a customer cancels an order.
+3.4. The system SHALL provide customers with a clear refund policy and process for cancelled orders.
+
+### 2.4 Payment Processing
+**FR-PP1: Payment Methods**
+1.1. The system SHALL accept payment via major credit/debit cards (Visa, MasterCard, American Express).
+1.2. The system SHALL accept payment via digital wallets (Apple Pay, Google Pay, PayPal).
+1.3. The system SHALL support cash-on-delivery as a payment option for eligible restaurants.
+
+**FR-PP2: Payment Security**
+2.1. The system SHALL transmit all payment information to a PCI-DSS certified payment processor using TLS 1.2 or higher encryption.
+2.2. The system SHALL NOT store full credit card numbers or CVV codes on its servers.
+2.3. The system SHALL display a detailed payment receipt including transaction ID, date, items purchased, and amounts.
+
+**FR-PP3: Refund Processing**
+3.1. The system SHALL process refunds to the original payment method within 5-7 business days for cancelled or disputed orders.
+3.2. The system SHALL notify customers via email when a refund has been initiated and completed.
+
+### 2.5 Order Tracking & History
+**FR-OT1: Real-time Tracking**
+1.1. The system SHALL display the current status of active orders using the following states: Order Received, Preparing, Ready for Pickup, Out for Delivery, Delivered.
+1.2. The system SHALL update order status within 60 seconds of the restaurant or delivery personnel changing the status.
+1.3. For orders "Out for Delivery," the system SHALL display an estimated delivery time and, when available, a map showing the delivery person's location.
+1.4. The system SHALL automatically notify customers via SMS or email when order status changes.
+
+**FR-OT2: Order History**
+2.1. The system SHALL provide customers with a view of all past orders, including order details, dates, amounts, and status.
+2.2. The system SHALL allow customers to filter past orders by date range, restaurant, or order status.
+2.3. The system SHALL allow customers to reorder any past order with a single click, with the option to modify items before confirmation.
+2.4. The system SHALL allow customers to rate and review restaurants and specific menu items after order delivery.
+
+### 2.6 Restaurant Management
+**FR-RM1: Restaurant Staff Interface**
+1.1. The system SHALL provide restaurant staff with a secure login to access the restaurant management interface.
+1.2. The system SHALL display incoming orders to restaurant staff in real-time with audible or visual notifications.
+1.3. The system SHALL allow restaurant staff to accept or reject incoming orders within 3 minutes of receipt.
+1.4. The system SHALL allow restaurant staff to update order status through the following workflow: Accepted → Preparing → Ready for Pickup.
+1.5. When rejecting an order, the system SHALL require restaurant staff to select a reason from predefined options (e.g., item unavailable, restaurant at capacity).
+
+**FR-RM2: Menu Management**
+2.1. The system SHALL allow restaurant staff to update menu item availability (in stock/out of stock) in real-time.
+2.2. The system SHALL allow restaurant staff to add, edit, or remove menu items, including name, description, price, category, and dietary tags.
+2.3. The system SHALL allow restaurant staff to set preparation times for individual menu items.
+2.4. The system SHALL allow restaurant staff to create and manage daily specials or promotional items.
+
+**FR-RM3: Order Management**
+3.1. The system SHALL provide restaurant staff with a view of all active orders, filtered by status.
+3.2. The system SHALL allow restaurant staff to print order tickets for the kitchen.
+3.3. The system SHALL display suggested add-on items to restaurant staff during manual order entry (for phone orders).
+3.4. The system SHALL allow restaurant staff to apply discounts or issue refunds for order issues, with manager approval for amounts above $20.
+
+### 2.7 Delivery Management
+**FR-DM1: Delivery Personnel Interface**
+1.1. The system SHALL provide delivery personnel with a mobile application for managing delivery assignments.
+1.2. The system SHALL assign delivery orders to available personnel based on proximity to restaurant and delivery destination.
+1.3. The system SHALL notify delivery personnel of new assignments with order details, pickup location, and delivery destination.
+1.4. The system SHALL allow delivery personnel to update order status: Accepted → En Route to Restaurant → Order Picked Up → Out for Delivery → Delivered.
+1.5. The system SHALL provide delivery personnel with navigation to both restaurant and customer locations.
+1.6. The system SHALL allow delivery personnel to contact the customer through the app (masked phone number) for delivery instructions.
+
+**FR-DM2: Delivery Tracking**
+2.1. The system SHALL track delivery personnel location (with their consent) during active deliveries.
+2.2. The system SHALL provide estimated delivery times to customers based on real-time traffic conditions and delivery progress.
+2.3. The system SHALL allow delivery personnel to indicate delivery completion and collect customer signatures (for high-value orders).
+
+### 2.8 Administrative Functions
+**FR-AD1: System Administration**
+1.1. The system SHALL provide administrators with an interface to create, modify, and deactivate user accounts (customers, restaurant staff, delivery personnel).
+1.2. The system SHALL allow administrators to approve new restaurant registrations before they go live on the platform.
+1.3. The system SHALL provide administrators with dashboards showing system-wide metrics: total orders, revenue, active users, popular restaurants.
+1.4. The system SHALL allow administrators to manage system-wide promotions, discounts, and referral programs.
+1.5. The system SHALL allow administrators to review and resolve customer disputes or complaints.
+
+**FR-AD2: Restaurant Administration**
+2.1. The system SHALL allow administrators to set commission rates and payment schedules for each restaurant.
+2.2. The system SHALL allow administrators to temporarily suspend restaurants for policy violations or quality issues.
+2.3. The system SHALL provide administrators with tools to monitor restaurant performance metrics: order completion time, customer ratings, cancellation rates.
+
+**FR-AD3: Content Management**
+3.1. The system SHALL allow administrators to manage featured restaurants and promotional banners on the customer interface.
+3.2. The system SHALL allow administrators to review and moderate customer reviews before publication.
+3.3. The system SHALL allow administrators to send system-wide notifications to customers about service updates or promotions.
+
+## 3. Non-Functional Requirements
+
+### 3.1 Usability
+**NFR-US1: User Interface**
+1.1. The customer interface SHALL be responsive and usable on screen sizes from 320px (mobile phones) to 1920px (desktop monitors).
+1.2. The system SHALL maintain a consistent visual design and navigation structure across all interfaces.
+1.3. All interactive elements SHALL provide visual feedback when clicked or tapped.
+1.4. Error messages SHALL be clear, specific, and suggest corrective actions.
+
+**NFR-US2: Learnability**
+2.1. A first-time customer SHALL be able to complete an order from restaurant selection to payment confirmation in under 5 minutes without training.
+2.2. Restaurant staff SHALL be able to accept and process their first order within 10 minutes of system access without formal training.
+2.3. The system SHALL provide contextual help and tooltips for complex operations.
+
+**NFR-US3: Accessibility**
+3.1. The customer web interface SHALL comply with WCAG 2.1 Level AA accessibility standards.
+3.2. The system SHALL support keyboard navigation for all major functions.
+3.3. The system SHALL provide sufficient color contrast (minimum 4.5:1) for text elements.
+
+### 3.2 Performance
+**NFR-PF1: Response Time**
+1.1. The system SHALL display restaurant listings within 2 seconds of page load, 95% of the time under normal load conditions.
+1.2. The system SHALL display a restaurant's complete menu within 3 seconds of selection, 95% of the time.
+1.3. The system SHALL process payment transactions and return confirmation within 10 seconds, 99% of the time.
+1.4. Order status updates SHALL be visible to customers within 60 seconds of the status being changed by restaurant or delivery personnel.
+
+**NFR-PF2: Throughput**
+2.1. The system SHALL support 100 concurrent customer sessions without degradation of performance.
+2.2. The system SHALL process up to 50 new orders per minute during peak hours.
+2.3. The payment processing module SHALL handle up to 100 transactions per minute.
+
+### 3.3 Reliability & Availability
+**NFR-RA1: Availability**
+1.1. The customer ordering interface SHALL be available 99.5% of the time during published business hours (8:00 AM - 12:00 AM local time).
+1.2. The restaurant management interface SHALL be available 99% of the time during restaurant operating hours.
+1.3. Scheduled maintenance windows SHALL not exceed 4 hours per month and SHALL be communicated to users at least 48 hours in advance.
+
+**NFR-RA2: Data Integrity**
+2.1. The system SHALL prevent loss of shopping cart contents due to browser refresh or accidental navigation.
+2.2. The system SHALL maintain data consistency across all interfaces (customer, restaurant, delivery, admin) in real-time.
+2.3. The system SHALL create automated daily backups of all transactional data.
+2.4. The system SHALL be able to restore from backup within 4 hours in case of data corruption.
+
+**NFR-RA3: Fault Tolerance**
+3.1. The system SHALL continue to accept orders if the payment processor is temporarily unavailable, queueing them for later processing.
+3.2. The system SHALL provide graceful degradation of non-essential features (e.g., real-time tracking) during high load conditions.
+3.3. The system SHALL log all errors with sufficient detail for troubleshooting without exposing sensitive information to users.
+
+### 3.4 Security
+**NFR-SE1: Data Protection**
+1.1. The system SHALL encrypt all sensitive data at rest using AES-256 encryption.
+1.2. The system SHALL encrypt all data in transit using TLS 1.2 or higher.
+1.3. The system SHALL NOT store full credit card numbers, CVV codes, or authentication passwords in plain text.
+1.4. The system SHALL mask sensitive information (e.g., display only last 4 digits of credit cards) in user interfaces.
+
+**NFR-SE2: Access Control**
+2.1. The system SHALL require multi-factor authentication for administrative accounts.
+2.2. The system SHALL implement role-based access control with the following minimum roles: Customer, Restaurant Staff, Delivery Personnel, Administrator.
+2.3. The system SHALL automatically log out inactive sessions after 30 minutes of inactivity.
+2.4. The system SHALL prevent concurrent logins from multiple locations for the same user account.
+
+**NFR-SE3: Compliance**
+3.1. The system SHALL comply with GDPR requirements for EU customers, including right to access, rectification, and erasure of personal data.
+3.2. The system SHALL comply with CCPA requirements for California customers.
+3.3. The system SHALL maintain audit logs of all administrative actions for 7 years.
+3.4. The system SHALL provide customers with a privacy policy detailing data collection and usage practices.
+
+### 3.5 Integrability
+**NFR-IN1: External Systems**
+1.1. The system SHALL integrate with at least two major payment processors (e.g., Stripe, PayPal) with the ability to switch between them.
+1.2. The system SHALL integrate with SMS/email notification services (e.g., Twilio, SendGrid) for order updates.
+1.3. The system SHALL provide RESTful APIs for third-party integration with restaurant POS systems.
+1.4. The system SHALL integrate with mapping services (e.g., Google Maps, Mapbox) for location services and delivery routing.
+
+**NFR-IN2: Internal Interfaces**
+2.1. The customer web interface, mobile apps, restaurant interface, and admin interface SHALL share a common backend with consistent data models.
+2.2. The system SHALL provide webhook notifications for order status changes to registered third-party systems.
+2.3. The system SHALL support bulk import of restaurant menus via CSV or Excel files.
+
+### 3.6 Scalability
+**NFR-SC1: Growth Support**
+1.1. The system architecture SHALL support scaling to 500 concurrent users without major redesign.
+1.2. The database design SHALL efficiently handle up to 1 million order records.
+1.3. The system SHALL support the addition of new restaurants without downtime or performance degradation.
+
+### 3.7 Internationalization
+**NFR-I18N1: Localization Support**
+1.1. The system SHALL support multiple languages (English, Spanish, French) with all user-facing text stored in external resource files.
+1.2. The system SHALL format dates, times, and currency according to user locale settings.
+1.3. The system SHALL support right-to-left text layout for applicable languages.
+
+## 4. Constraints & Assumptions
+
+### 4.1 Constraints
+**CON-1: Technical Constraints**
+1.1. The customer interface MUST be accessible via modern web browsers (Chrome 80+, Firefox 75+, Safari 13+) and as native mobile applications for iOS (13+) and Android (10+).
+1.2. The system MUST use HTTPS for all web-based communications.
+1.3. The system MUST NOT require browser plugins (Flash, Java) for core functionality.
+
+**CON-2: Business Constraints**
+2.1. The system MUST be developed and deployed within a budget of $500,000.
+2.2. The initial launch MUST support at least 50 restaurants in the metropolitan area.
+2.3. The system MUST comply with local food delivery regulations in all operational areas.
+
+**CON-3: Regulatory Constraints**
+3.1. The system MUST comply with PCI-DSS requirements for payment card processing.
+3.2. The system MUST comply with data protection regulations (GDPR, CCPA) applicable to user locations.
+3.3. The system MUST maintain records of all transactions for tax purposes for 7 years.
+
+**CON-4: Implementation Constraints**
+4.1. Phase 1 MUST include core ordering functionality for customers and basic restaurant management.
+4.2. Phase 2 MUST add delivery personnel management and advanced analytics.
+4.3. Multi-language support (English, Spanish, French) MUST be implemented in Phase 2.
+
+### 4.2 Assumptions
+**ASM-1: User Assumptions**
+1.1. Customers have reliable internet access when placing orders.
+1.2. Restaurant staff have basic computer literacy to use the management interface.
+1.3. Delivery personnel have smartphones capable of running the delivery application.
+
+**ASM-2: Technical Assumptions**

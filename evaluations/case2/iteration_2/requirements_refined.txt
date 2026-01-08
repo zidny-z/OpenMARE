@@ -1,0 +1,64 @@
+### **Assumptions**
+1.  The system's users are: a Teacher, Young Students (approximately ages 4-8), and Parents/Guardians.
+2.  The Teacher manages one or more discrete classes/groups of students.
+3.  All students and parents must be explicitly registered and associated with a specific class by the Teacher to gain access.
+4.  "Work" or "assignments" can include digital files (images, videos, documents) and simple text responses.
+
+---
+
+### **Functional Requirements**
+
+**FR1: Centralized Content Hub**
+*   FR1.1: The system SHALL provide the Teacher with a dedicated, private digital space (e.g., a class homepage) for each class they manage.
+*   FR1.2: The system SHALL allow the Teacher to post and organize lesson materials (e.g., videos, document links, website URLs) within the class space.
+*   FR1.3: The system SHALL present the available lesson materials to the Student user in a single, consolidated view.
+
+**FR2: Assignment Submission & Feedback**
+*   FR2.1: The system SHALL allow the Teacher to create assignments with a title, simple instructions, and an optional due date.
+*   FR2.2: The system SHALL allow the Student user to submit work in response to an assignment by uploading files (images, video, audio, documents) or entering text into a designated field.
+*   FR2.3: The system SHALL provide the Teacher with a consolidated view of all submissions for a given assignment.
+*   FR2.4: The system SHALL allow the Teacher to provide feedback on a student's submission. Feedback mechanisms SHALL include, at a minimum: text comments and a selection of pre-defined positive visual indicators (e.g., digital stickers, stamps).
+*   FR2.5: The system SHALL display the Teacher's feedback to the corresponding Student user.
+
+**FR3: Student-Facing Interface & Routine**
+*   FR3.1: The Student user interface SHALL rely primarily on large, recognizable icons and images for navigation, with minimal required text reading.
+*   FR3.2: The system SHALL provide the Student user with a clear, visual list or board of their current and pending assignments.
+*   FR3.3: The system SHALL allow the Student user to view their submitted work and the associated Teacher feedback in a dedicated area.
+
+**FR4: Parent-Facing Interface & Communication**
+*   FR4.1: The system SHALL provide Parent users with a dedicated view of their child's class space, including announcements and a summary of assigned/completed work.
+*   FR4.2: The system SHALL provide the Teacher with a tool to send text announcements to all Parents within a class.
+*   FR4.3: The system SHALL provide a direct, private communication channel between the Teacher and individual Parents (e.g., a simple messaging interface).
+
+**FR5: Access Control & User Management**
+*   FR5.1: The system SHALL require user authentication (username/password or equivalent) for Teacher, Student, and Parent access.
+*   FR5.2: The system SHALL allow the Teacher to initiate and control the registration of Student and Parent accounts for their class.
+*   FR5.3: The system SHALL enforce that users can only view data for the class(es) to which they are explicitly registered. A Student or Parent from one class SHALL NOT be able to view the data of another class.
+
+---
+
+### **Non-Functional Requirements**
+
+**NFR1: Usability & User Experience**
+*   NFR1.1: The Student user interface SHALL be navigable by a child with emerging literacy skills, using consistent, large tap targets (buttons/icons) and clear visual cues.
+*   NFR1.2: The system's primary user workflows (e.g., submitting work, viewing assignments) for both Student and Parent users SHALL require no formal training to complete.
+*   NFR1.3: The system SHALL be tolerant of erroneous or accidental input (e.g., rapid multiple taps, pressing 'back') without crashing or losing user data, and SHALL provide clear, simple options to undo or correct actions.
+
+**NFR2: Performance & Compatibility**
+*   NFR2.1: The system's core user interfaces SHALL be fully functional and legible on smartphone and tablet screens.
+*   NFR2.2: The system SHALL be usable with a high-latency internet connection (e.g., typical of low-bandwidth mobile data), meaning core page loads and submission actions SHALL complete within an acceptable time frame (e.g., <5 seconds) under such conditions.
+
+**NFR3: Security & Privacy**
+*   NFR3.1: The system SHALL not include any public user profiles, searchable user directories, or open forums/chat rooms accessible to users.
+*   NFR3.2: All user communication (Teacher-Parent, system announcements) SHALL be confined to the private channels within the system; there SHALL be no capability for unstructured, open communication between Students or between Parents of different children.
+*   NFR3.3: The system SHALL transmit and store all user data (including submitted work and messages) using industry-standard encryption.
+
+**NFR4: Operational & Business**
+*   NFR4.1: The initial setup of a class by a Teacher (including adding students and parents) SHALL be achievable within a predictable, short timeframe (e.g., less than 30 minutes for a class of 20).
+*   NFR4.2: The system's pricing model SHALL have predictable, recurring costs (e.g., a fixed monthly or annual subscription per class/teacher) without variable per-student or per-assignment fees.
+
+Issues raised by checker:
+FAIL
+1. Missing requirement: The SRS does not specify how a Student user's account is linked to a Parent/Guardian account, which is critical for the Parent's dashboard (FR4.1) and communication features (FR4.3). The user management section (FR5.2) mentions generating codes but does not define the association mechanism.
+2. Ambiguity: Requirement FR2.5 states feedback is displayed "within 5 seconds of the Teacher saving the feedback." This is ambiguous regarding whether this is a real-time push notification or a page refresh requirement, and it does not specify if the student must be actively logged in to receive it.
+3. Inconsistency: Constraint 4.1 states "Maximum individual file upload size: 500MB," but functional requirements FR1.2 and FR2.1 specify lower maximum sizes for specific file types (e.g., 50MB for documents, 20MB for images). The global constraint contradicts the specific functional limits.

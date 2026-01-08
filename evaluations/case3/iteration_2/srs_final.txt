@@ -1,0 +1,115 @@
+# Software Requirements Specification (SRS)
+## Health & Wellness Tracking Mobile Application
+
+---
+
+### **1. Introduction**
+
+#### **1.1 Purpose**
+This document defines the functional and non-functional requirements for a mobile application designed to help users track personal health and wellness activities, set goals, and visualize their progress. It serves as the definitive specification for developers, testers, and project stakeholders.
+
+#### **1.2 Scope**
+The system is a mobile application that enables users to define personal health goals (e.g., daily steps, water intake, meditation), manually log completed activities, and track their progress over time through visualizations and motivational features like streaks and badges. The initial Minimum Viable Product (MVP) will focus on core tracking and logging functionality. Integration with external health data sources (e.g., Apple Health, Google Fit) for automatic activity import is explicitly **out of scope** for the MVP and will be considered for future releases.
+
+#### **1.3 Definitions, Acronyms, and Abbreviations**
+*   **Activity:** A user-defined, health-related action such as walking, drinking water, meditating, or sleeping.
+*   **Goal:** A user-defined target for an activity, comprising a type, target value, and recurrence period.
+*   **Progress:** A user's quantified advancement toward a goal.
+*   **Log:** A record of a completed activity, including date, time, and quantified value.
+*   **Streak:** A count of consecutive days on which a user has logged progress toward a specific goal.
+*   **MVP:** Minimum Viable Product.
+*   **SRS:** Software Requirements Specification.
+
+#### **1.4 References**
+*   Project Charter: "HealthTrack MVP Proposal"
+*   Platform Guidelines: Apple Human Interface Guidelines, Google Material Design
+*   Privacy Standards: General Data Protection Regulation (GDPR) Overview, California Consumer Privacy Act (CCPA) Overview
+
+---
+
+### **2. Functional Requirements**
+
+#### **FR1: User Onboarding & Account Management**
+*   **FR1.1:** The system SHALL allow a new user to create a personal account using an email address and password.
+*   **FR1.2:** The system SHALL allow an existing user to log into their account.
+*   **FR1.3:** The system SHALL guide a new user through a process to create their first personal health goal within the initial app session post-login.
+*   **FR1.4:** The system SHALL allow the user to define a goal with the following attributes:
+    *   **FR1.4.1:** A **type** selected from a predefined list (e.g., "Steps," "Water Intake," "Meditation," "Sleep").
+    *   **FR1.4.2:** A **target value** (a positive number with a unit, e.g., "8000 steps," "2.0 liters").
+    *   **FR1.4.3:** A **recurrence period** (e.g., "Daily," "Weekly").
+
+#### **FR2: Activity Logging & Data Management**
+*   **FR2.1:** The system SHALL provide a primary interface for the user to initiate manual logging of an activity.
+*   **FR2.2:** For a selected activity type, the system SHALL present an input method appropriate for its data type:
+    *   **FR2.2.1:** For "Steps" and "Water Intake," a numeric keypad or increment/decrement buttons.
+    *   **FR2.2.2:** For "Meditation" and "Sleep," a timer or duration picker (hours/minutes).
+*   **FR2.3:** The system SHALL create a log record for each completed activity, storing the activity type, quantified value, and the date & time of logging.
+*   **FR2.4:** The system SHALL validate all user input before creating a log or goal:
+    *   **FR2.4.1:** Target values and logged values MUST be positive numbers.
+    *   **FR2.4.2:** The system SHALL display a clear error message if validation fails and prevent submission.
+*   **FR2.5:** The system SHALL allow the user to view a history of their logged activities, filterable by activity type and date range.
+*   **FR2.6:** The system SHALL allow the user to edit or delete an existing activity log entry.
+
+#### **FR3: Progress Tracking & Visualization**
+*   **FR3.1:** For each active goal, the system SHALL calculate the user's current progress by summing relevant logs within the current recurrence period and SHALL display this progress (e.g., "1.5L / 2.0L").
+*   **FR3.2:** The system SHALL display a visual chart (e.g., bar chart) showing the user's logged values for a selected goal over a configurable historical period (default: past 7 days).
+*   **FR3.3:** The system SHALL calculate and display a "streak" count for each goal, representing the number of consecutive days the user has logged a non-zero value for that activity.
+*   **FR3.4:** The system SHALL award and display a digital badge within the user's profile upon achieving predefined milestones (e.g., "First Goal Met," "7-Day Streak").
+*   **FR3.5:** The system SHALL handle offline scenarios:
+    *   **FR3.5.1:** Users SHALL be able to log activities and view locally cached progress data while offline.
+    *   **FR3.5.2:** Any data created or modified offline SHALL be synchronized to the cloud backend automatically when a network connection is re-established.
+
+#### **FR4: Goal & System Personalization**
+*   **FR4.1:** The system SHALL allow the user to create new goals, modify the target value of existing goals, and deactivate/reactivate goals at any time.
+*   **FR4.2:** The system SHALL provide a dashboard or list view showing all the user's active and inactive goals.
+*   **FR4.3:** The system SHALL allow the user to configure app settings, including enabling/disabling all notifications.
+
+#### **FR5: Notifications**
+*   **FR5.1:** The system SHALL allow the user to set, modify, or delete reminders for specific goals, including the time of day and recurrence (e.g., daily at 8 PM).
+*   **FR5.2:** The system SHALL trigger a local push notification at the user-scheduled times for activity logging reminders, provided notifications are enabled.
+*   **FR5.3:** Scheduled notifications SHALL be stored locally on the device to ensure delivery even if the app is not actively running.
+
+#### **FR6: System Error Handling & Resilience**
+*   **FR6.1:** If a user action (e.g., saving a log, syncing data) fails, the system SHALL display a user-friendly error message indicating the nature of the problem (e.g., "Network unavailable," "Could not save data") and suggest a corrective action if possible.
+*   **FR6.2:** The system SHALL protect against data loss during failed operations by retaining unsaved user input where feasible or implementing auto-save drafts for complex entries.
+
+---
+
+### **3. Non-Functional Requirements**
+
+#### **NFR1: Usability**
+*   **NFR1.1:** **Learnability:** A new user shall be able to complete account creation, initial goal setup, and log their first activity within 3 minutes of opening the app for the first time.
+*   **NFR1.2:** **Efficiency:** The primary actions of logging an activity and viewing the progress dashboard shall be accessible within two taps from the application's home screen.
+*   **NFR1.3:** **Satisfaction:** The application's interface text and feedback messages shall use encouraging, non-technical language (e.g., "Great job!" "Almost there!") to support user motivation.
+
+#### **NFR2: Performance**
+*   **NFR2.1:** The application shall launch from a closed state to a usable main screen in under 2 seconds on mid-range mobile devices (3-year-old hardware equivalents).
+*   **NFR2.2:** All user interface interactions (e.g., button taps, screen transitions) shall provide visual feedback (e.g., button press animation) within 200 milliseconds.
+*   **NFR2.3:** Data synchronization between the local device and cloud backend shall occur in the background without blocking the user interface.
+
+#### **NFR3: Reliability & Availability**
+*   **NFR3.1:** The application's core logging and progress viewing functionality shall be available for use 100% of the time in offline mode, relying on locally cached data.
+*   **NFR3.2:** Under normal operating conditions, locally scheduled push notifications shall be delivered with 99% reliability.
+*   **NFR3.3:** User data (logs, goals, settings) shall be persistently saved after each creation or update operation to prevent loss between app sessions.
+
+#### **NFR4: Security & Privacy**
+*   **NFR4.1:** All user authentication credentials (passwords) shall be transmitted and stored using industry-standard encryption.
+*   **NFR4.2:** All personal data, including activity logs and goals, shall be stored securely at rest, both on the device and on cloud servers.
+*   **NFR4.3:** The system shall present a privacy policy to the user during initial onboarding that clearly states what data is collected, how it is used, and with whom it is shared.
+*   **NFR4.4:** The application's data practices shall comply with the privacy guidelines of its distribution platforms (Apple App Store, Google Play Store).
+
+---
+
+### **4. Constraints & Assumptions**
+
+#### **4.1 Constraints**
+*   **C1:** The initial MVP release must be developed and launched within the budget and timeline specified in the approved project plan.
+*   **C2:** The initial MVP release will target a single mobile platform (iOS **or** Android). The specific platform will be chosen based on a separate feasibility analysis considering target audience demographics and constraint C1.
+*   **C3:** The application shall not integrate with or import data from external health platforms (e.g., Apple Health Kit, Google Fit) in the MVP release. All activity data must be entered manually by the user.
+*   **C4:** The application must function on mobile operating system versions no older than two major releases from the current stable version at the time of development start.
+
+#### **4.2 Assumptions**
+*   **A1:** Users have access to a compatible smartphone and a reliable internet connection for initial setup and periodic data synchronization, though core logging works offline.
+*   **A2:** Users will manually log their activities; the system does not assume or require automatic sensing of activities.
+*   **A3:** The predefined list of activity types (Steps, Water, Meditation, Sleep) is sufficient for the MVP. New activity types are not required for launch.
+*   **A4:** A cloud backend service for user account management, data storage, and cross-device sync will be available and managed as a separate system component.

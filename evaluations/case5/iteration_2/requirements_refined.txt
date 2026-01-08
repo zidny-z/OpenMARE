@@ -1,0 +1,61 @@
+Based on the provided stakeholder input, here are the clarified requirements, separated into functional and non-functional categories, using the prescribed wording and stating explicit assumptions.
+
+**Assumptions:**
+1.  The term "authorized staff" refers to individuals with verified credentials and role-based permissions within the hospital.
+2.  "Existing hospital systems" refers to at least one other software system (e.g., lab information system, billing system) with which data exchange is necessary.
+3.  "Healthcare regulations" primarily refer to data privacy and security standards such as HIPAA or regional equivalents.
+
+---
+
+### **Functional Requirements**
+
+**FR-1: Patient Information Management**
+*   The system SHALL provide a centralized, organized repository for patient medical histories, treatments, prescribed medications, and test results.
+*   The system SHALL allow authorized staff to create, view, update, and deactivate patient records.
+*   The system SHALL maintain a complete audit trail of all changes made to any patient record.
+
+**FR-2: Appointment Scheduling**
+*   The system SHALL allow authorized staff to book, reschedule, and cancel patient appointments.
+*   The system SHALL prevent the double-booking of a patient, a staff member, or a room for the same date and time.
+*   The system SHALL provide a view of scheduled appointments for patients, staff, and resources (e.g., rooms, equipment).
+
+**FR-3: Inventory Management**
+*   The system SHALL maintain a record of medical supplies, medications, and equipment, including quantities and locations.
+*   The system SHALL update inventory quantities in real-time upon the recording of a disbursement or a new shipment receipt.
+*   The system SHALL generate an alert when the quantity of a specific inventory item falls below a pre-defined threshold.
+
+**FR-4: Staff Coordination & Communication**
+*   The system SHALL provide a mechanism for authorized staff to send and receive internal messages or alerts.
+*   The system SHALL allow the assignment of tasks or patients to specific staff members or roles.
+
+**FR-5: System Integration**
+*   The system SHALL be capable of exchanging data with existing, specified hospital systems.
+
+---
+
+### **Non-Functional Requirements**
+
+**NFR-1: Security & Compliance**
+*   The system SHALL enforce access controls so that users can only view and modify data and functions explicitly permitted for their role.
+*   The system SHALL encrypt all patient health information (PHI) both at rest and in transit.
+*   The system SHALL generate logs of all user authentication attempts and data access events for audit purposes.
+*   The system SHALL be designed to comply with relevant healthcare data privacy regulations (e.g., HIPAA).
+
+**NFR-2: Reliability & Performance**
+*   The system SHALL be available for use 99.5% of the time during core hospital operating hours.
+*   The system SHALL support the concurrent use of the number of users equivalent to the hospital's staff count without significant performance degradation.
+*   The system's response time for common transactions (e.g., retrieving a patient record, booking an appointment) SHALL be less than 3 seconds.
+
+**NFR-3: Usability**
+*   The system SHALL provide a user interface that enables a staff member with standard hospital IT training to complete core tasks (e.g., schedule an appointment, update a record) without external assistance.
+*   The system SHALL provide context-sensitive help or guidance for critical functions.
+
+**NFR-4: Scalability & Integration**
+*   The system's architecture SHALL support an increase in patient record volume by 20% per year without requiring a major redesign.
+*   The system SHALL use standardized protocols (e.g., HL7, FHIR, REST APIs) for integration with other systems.
+
+Issues raised by checker:
+FAIL
+1. **Missing Requirement: Data Backup and Recovery.** The SRS does not specify requirements for data backup, disaster recovery, or business continuity. This is a critical non-functional requirement for a system managing sensitive patient data and hospital operations. There is no mention of Recovery Point Objectives (RPO) or Recovery Time Objectives (RTO).
+2. **Ambiguity: "Significant performance degradation" and "peak load".** In NFR-2, the terms "significant performance degradation" and "peak load" are subjective and not measurable. The requirement to support 250 concurrent users lacks a clear definition of what constitutes "support" (e.g., acceptable response times, error rates). This makes the requirement difficult to test and verify.
+3. **Inconsistency: Availability Scope.** NFR-1 specifies audit logs must be retained for "a minimum of six years," which is a specific compliance detail. However, NFR-2 defines system availability as "99.5% availability during core hospital operating hours (06:00 to 22:00 local time, 365 days per year), excluding scheduled maintenance windows." This creates a potential conflict, as critical systems in a hospital often require 24/7 availability. The defined hours may not cover emergency or night shift operations, which is inconsistent with the system's purpose of managing patient care.

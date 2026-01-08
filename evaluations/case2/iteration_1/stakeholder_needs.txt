@@ -1,0 +1,27 @@
+Of course. Here is a description from a non-technical stakeholder's perspective.
+
+### **My Goals**
+1.  **Create a Central Hub:** I want a single, safe, and simple online space where my young students can reliably find everything they need for their lessons—like videos, worksheets, and reading links.
+2.  **Simplify Assignment Collection:** I need an easy way for students to turn in their work (drawings, short answers, videos of themselves reading) and for me to give them encouraging feedback without a mountain of paper or emails.
+3.  **Foster Independence & Routine:** I want to build my students' confidence by giving them a platform they can navigate themselves to see what they need to do, fostering a sense of responsibility in a child-friendly way.
+4.  **Engage Parents as Partners:** I want parents to have a clear, reassuring window into their child's learning activities and progress without being overwhelmed.
+
+### **My Needs**
+*   **Extreme Simplicity:** The interface must be so intuitive that a young child with minimal reading skills can understand it. Think big buttons, clear icons, and visual cues over text.
+*   **Safety & Privacy First:** The system must be a closed, secure garden. No public profiles, no open chat rooms, and no way for strangers to contact the children.
+*   **Accessibility for All Families:** It must work smoothly on common devices like smartphones and tablets, as not all families have a computer. It should also be usable with slower internet connections.
+*   **Durable & Forgiving:** It should withstand accidental clicks, taps, and the general unpredictability of how children interact with technology.
+*   **Clear Communication Channels:** I need simple, built-in ways to send announcements to parents and positive messages to students (e.g., voice notes or sticker-like rewards).
+
+### **My Constraints**
+*   **Limited Student Attention & Tech Skills:** My students have short attention spans and are still developing literacy and fine motor skills. They cannot follow complex multi-step processes.
+*   **Varied Parental Tech Comfort:** Parents have a wide range of comfort with technology. The parent side must be equally simple and not require training.
+*   **Budget:** I am likely working with a limited school or organizational budget. Ongoing costs need to be predictable and justifiable.
+*   **Time:** I have very little time for extensive setup, complex grading, or troubleshooting technical problems for 20+ families.
+
+### **My Pain Points (with current methods, like email or generic platforms)**
+*   **The "Digital Wild Goose Chase":** Work and links are scattered across emails, messaging apps, and paper folders. Students and parents get lost, and things are easily missed.
+*   **Feedback Feels Impersonal & Slow:** Writing individual feedback emails for kindergarten work is time-consuming. Kids thrive on immediate, positive reinforcement, which is hard to deliver digitally.
+*   **Overwhelming Parents:** Constant emails and messages from different apps create anxiety and notification fatigue for parents, causing them to disengage.
+*   **Lack of Student Ownership:** Current methods are mostly parent-driven. I struggle to create a digital space where the *child* feels it is for them and can take the lead.
+*   **Security Anxiety:** Using general-purpose tools never feels completely safe or appropriate for young children. I worry about privacy and unintended sharing.

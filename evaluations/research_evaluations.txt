@@ -1,0 +1,15 @@
+this folder not contain about evaluation program code
+but it is for research evaluation
+
+Study case :
+1. "I want to develop a smart home control system that allows homeowners to monitor and control household devices remotely"
+2. "I want to develop learning management system that allows students to access course materials, submit assignments, and receive feedback. and dont forget my students are kids"
+3. "I want to develop a mobile application that allows users to track their daily activities and set goals for improving their health"
+4. "I want to develop web based application for food ordering system that allows customers to browse menu, place orders, and track their deliveries"
+5. "I want to develop hospital management system that allows hospital staff to manage patient records, schedule appointments, and track inventory"
+
+Evaluation method : there are 3 aspect for this evaluations
+- completeness
+- clarity
+- consistency
+score number = 0-2

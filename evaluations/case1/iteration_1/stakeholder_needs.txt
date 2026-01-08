@@ -1,0 +1,34 @@
+# Smart Home Control System: Stakeholder Overview
+
+## Primary Goals
+- Enable homeowners to monitor household devices from anywhere (work, vacation, etc.)
+- Allow remote control of devices (lights, thermostat, appliances, security systems)
+- Provide real-time status updates on device operations and home conditions
+- Create a unified interface for managing multiple different devices and brands
+- Ensure family members can easily use the system regardless of technical skill
+
+## Key Needs
+- Simple, intuitive interface that doesn't require technical expertise
+- Reliable access to home systems with minimal downtime
+- Ability to set schedules and automation rules (like "turn lights on at sunset")
+- Notifications for important events (water leak detected, door left open, temperature extremes)
+- Support for various household devices we already own and might purchase in future
+- Different access levels for different family members (parents vs. children)
+
+## Constraints
+- Must work within typical household budgets (avoiding expensive professional installation)
+- Shouldn't require major home renovations or rewiring
+- Need to accommodate homes with varying internet connection qualities
+- Must respect privacy concerns about home monitoring
+- Should be usable by people with different physical abilities and tech comfort levels
+- Needs to work with existing smartphones and tablets people already own
+
+## Pain Points with Current Situation
+- Too many separate apps for different devices (thermostat, lights, cameras all need different apps)
+- Difficulty knowing if devices are actually responding to commands
+- Worry about security when away from home (did I lock the door? turn off the oven?)
+- Energy waste from devices left on unnecessarily
+- Complexity of setting up automation between different brand devices
+- Family conflicts over thermostat settings and lighting
+- Difficulty helping elderly relatives manage their home systems remotely
+- Concerns about system reliability during internet outages

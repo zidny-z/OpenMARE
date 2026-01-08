@@ -1,0 +1,126 @@
+# Software Requirements Specification (SRS): Smart Home Automation System
+
+## 1. Introduction
+
+### 1.1 Purpose
+This document specifies the requirements for a Smart Home Automation System that provides unified control, monitoring, and automation of household IoT devices. The system enables homeowners to manage multiple smart devices from different manufacturers through a single interface, both locally and remotely.
+
+### 1.2 Scope
+The system includes a central hub/controller, user interfaces (mobile app and web portal), cloud services for remote access, and integration capabilities with third-party smart devices. The system does not include the manufacturing of smart devices themselves but provides the platform to integrate and control them.
+
+### 1.3 Definitions
+- **Household Device**: A physical IoT unit (smart plug, light bulb, lock, sensor, thermostat, etc.) that can be monitored or controlled.
+- **Supported Device**: A household device that is compatible with the system's communication protocols and has been verified to work with the system's integration layer.
+- **Local Access**: Access to the system from within the home's local network.
+- **Remote Access**: Access to the system from outside the home's local network via the internet.
+- **Administrator**: The primary user account with full system configuration privileges.
+
+## 2. Functional Requirements
+
+### FR1: System Initialization & Setup
+*   FR1.1: The system SHALL provide a guided first-time setup process for initial configuration.
+*   FR1.2: The system SHALL require the creation of a primary administrator account during initial setup.
+*   FR1.3: The system SHALL guide the user through connecting the central hub to the home network and internet during setup.
+*   FR1.4: The system SHALL provide a backup and restore mechanism for user configurations, automation rules, and device settings.
+*   FR1.5: The system SHALL allow users to export their configuration data to a secure file for backup purposes.
+*   FR1.6: The system SHALL allow users to restore their configuration from a previously created backup file.
+
+### FR2: Unified Device Management
+*   FR2.1: The system SHALL provide a single interface to view the status of all connected household devices.
+*   FR2.2: The system SHALL provide a single interface to control all connected household devices (e.g., turn on/off, set temperature, lock/unlock).
+*   FR2.3: The system SHALL provide a device discovery mechanism to detect compatible devices on the local network.
+*   FR2.4: The system SHALL maintain and display a list of supported device models and manufacturers.
+*   FR2.5: The system SHALL allow users to add supported household devices through a guided pairing process without professional installation or home rewiring.
+*   FR2.6: The system SHALL allow users to remove connected devices from the system.
+*   FR2.7: The system SHALL provide visual indication when attempting to add an unsupported device.
+
+### FR3: Remote Access & Control
+*   FR3.1: The system SHALL allow users to monitor and control connected devices from a remote location via the internet.
+*   FR3.2: The system SHALL provide the same core monitoring and control capabilities whether the user is local (on the home network) or remote.
+*   FR3.3: The system SHALL maintain local control of devices (within the home network) during a loss of internet connectivity, with remote access functionality becoming unavailable until connectivity is restored.
+
+### FR4: Automation & Scheduling
+*   FR4.1: The system SHALL allow users to create schedules where a device performs an action at a specified date and time (e.g., "Turn on lights at 7:00 PM").
+*   FR4.2: The system SHALL allow users to create rules where a change in one device's status triggers an action in another device, regardless of device brand (e.g., "If motion sensor detects motion between sunset and sunrise, then turn on hallway light").
+*   FR4.3: The system SHALL execute automation rules locally when internet connectivity is unavailable.
+
+### FR5: Alerts & Notifications
+*   FR5.1: The system SHALL allow users to configure alerts based on device status (e.g., door left open, water leak detected, temperature exceeds a threshold).
+*   FR5.2: The system SHALL send configured alerts to designated users via a notification mechanism (e.g., push notification, email, SMS).
+*   FR5.3: The system SHALL queue alerts for delivery when internet connectivity is temporarily unavailable.
+
+### FR6: User Management & Access Control
+*   FR6.1: The system SHALL support multiple user accounts per household.
+*   FR6.2: The system SHALL allow an administrator user to assign permissions (e.g., view only, control specific devices, full control) to other user accounts.
+*   FR6.3: The system SHALL require authentication for all user accounts before granting access to device monitoring and control.
+*   FR6.4: The system SHALL support password-based authentication with minimum complexity requirements (at least 8 characters, including uppercase, lowercase, and numbers).
+*   FR6.5: The system SHALL support optional two-factor authentication for enhanced security.
+
+### FR7: Status Feedback
+*   FR7.1: The system SHALL confirm to the user when a control command has been successfully sent to a device.
+*   FR7.2: The system SHALL display the last known or current operational status (e.g., on, off, locked, 72°F) for each connected device.
+*   FR7.3: The system SHALL indicate when a device's status is stale or unavailable due to connectivity issues.
+
+### FR8: System Maintenance
+*   FR8.1: The system SHALL provide a mechanism for delivering software and firmware updates.
+*   FR8.2: The system SHALL notify users of available updates and require user consent before installing non-critical updates.
+*   FR8.3: The system SHALL automatically install critical security updates after notifying the user.
+*   FR8.4: The system SHALL preserve user configurations and device settings during update processes.
+
+## 3. Non-Functional Requirements
+
+### NFR1: Usability & Accessibility
+*   NFR1.1: The system's user interface SHALL be designed for clarity and simplicity, enabling primary tasks (device control, rule creation) to be completed by a non-technical user with minimal instruction.
+*   NFR1.2: The system's user interface SHALL comply with WCAG 2.1 Level AA guidelines to accommodate users with different physical and visual abilities.
+*   NFR1.3: Common tasks (turning a device on/off, viewing status) SHALL be accomplishable within 3 user interactions from the main screen.
+
+### NFR2: Reliability & Availability
+*   NFR2.1: The system's core control and monitoring functions SHALL be available for 99.5% of the time in a rolling 30-day period, excluding scheduled maintenance.
+*   NFR2.2: Scheduled maintenance windows SHALL be communicated to users at least 48 hours in advance and SHALL not exceed 4 hours per month.
+*   NFR2.3: The system SHALL recover automatically from software crashes without user intervention within 2 minutes.
+
+### NFR3: Performance
+*   NFR3.1: The system SHALL update the status of a device in the user interface within 5 seconds of a state change when accessed locally under normal network conditions.
+*   NFR3.2: The system SHALL update the status of a device in the user interface within 10 seconds of a state change when accessed remotely under normal internet conditions.
+*   NFR3.3: The system SHALL provide visual feedback for a user-initiated control command within 2 seconds for local access and within 5 seconds for remote access under normal network conditions.
+*   NFR3.4: The system user interface SHALL respond to user input (button presses, screen taps) within 500 milliseconds.
+
+### NFR4: Compatibility
+*   NFR4.1: The system SHALL be accessible from the current and previous major versions of iOS and Android mobile operating systems.
+*   NFR4.2: The system SHALL be accessible from the current and previous major versions of Chrome, Safari, Firefox, and Edge web browsers on Windows and macOS.
+*   NFR4.3: The system SHALL support integration with devices from at least 5 major manufacturers at launch.
+*   NFR4.4: The system SHALL support common smart home communication protocols including Wi-Fi, Zigbee, and Z-Wave.
+
+### NFR5: Security & Privacy
+*   NFR5.1: All remote communication between the user and the system SHALL be encrypted using TLS 1.2 or higher.
+*   NFR5.2: User credentials SHALL be stored using industry-standard hashing algorithms with salt.
+*   NFR5.3: The system SHALL provide users with a clear privacy policy detailing what operational data is collected, how it is used, how it is stored, and how users can request data deletion.
+*   NFR5.4: The system SHALL implement rate limiting and account lockout policies to prevent brute force attacks.
+*   NFR5.5: The system SHALL segregate user data such that no user can access another household's data or devices.
+
+### NFR6: Cost & Implementation
+*   NFR6.1: The system's upfront hardware and software costs SHALL be targeted for a typical consumer household budget, excluding the cost of individual smart devices.
+*   NFR6.2: The system SHALL not require structural modifications to the home for installation.
+*   NFR6.3: The physical hub device SHALL have dimensions not exceeding 6x6x2 inches and SHALL operate on standard 110-240V AC power.
+
+### NFR7: Scalability
+*   NFR7.1: The system SHALL support up to 100 connected devices per household.
+*   NFR7.2: The system SHALL support up to 10 simultaneous user connections per household.
+
+## 4. Constraints & Assumptions
+
+### 4.1 Constraints
+1. The system must operate within the processing and memory limitations of consumer-grade hardware.
+2. The system cannot modify the firmware or internal software of third-party smart devices.
+3. Integration with third-party devices is limited to the APIs and protocols they expose.
+4. The system must comply with relevant data protection regulations (GDPR, CCPA, etc.) in regions where it is deployed.
+5. The system cannot guarantee performance during extreme network congestion or internet service provider outages.
+
+### 4.2 Assumptions
+1. The homeowner has a primary residence with internet access and a reliable home network.
+2. Users possess a smartphone, tablet, or computer with internet access to configure and use the system.
+3. Third-party devices to be integrated are in working condition and properly installed in their primary function.
+4. "Recent versions" of operating systems and browsers refers to versions released within the past 24 months.
+5. Users have basic technical literacy to follow setup instructions and connect devices to their home network.
+6. The home electrical system provides stable power to the hub and connected devices.
+7. Users will maintain their internet service and home network infrastructure.

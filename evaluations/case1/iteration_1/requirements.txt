@@ -1,0 +1,66 @@
+Based on the stakeholder overview, here are the clarified requirements and explicit assumptions.
+
+### **Explicit Assumptions**
+1.  The homeowner has a primary residence with internet access.
+2.  Users possess a smartphone, tablet, or computer to access the system.
+3.  The system integrates with third-party devices (lights, thermostats, etc.) via their existing APIs or communication protocols (e.g., Wi-Fi, Zigbee, Z-Wave).
+4.  "Remote access" implies access from outside the home's local network.
+5.  A "household device" is a physical IoT unit (e.g., smart plug, light bulb, lock, sensor) that can be monitored or controlled.
+
+---
+
+### **Functional Requirements**
+
+**FR1: Unified Device Management**
+*   FR1.1: The system SHALL provide a single interface to view the status of all connected household devices.
+*   FR1.2: The system SHALL provide a single interface to control all connected household devices (e.g., turn on/off, set temperature, lock/unlock).
+*   FR1.3: The system SHALL allow the addition and removal of supported household devices without professional installation or home rewiring.
+
+**FR2: Remote Access & Control**
+*   FR2.1: The system SHALL allow users to monitor and control connected devices from a remote location via the internet.
+*   FR2.2: The system SHALL provide the same core monitoring and control capabilities whether the user is local (on the home network) or remote.
+
+**FR3: Automation & Scheduling**
+*   FR3.1: The system SHALL allow users to create schedules where a device performs an action at a specified date and time (e.g., "Turn on lights at 7:00 PM").
+*   FR3.2: The system SHALL allow users to create rules where a change in one device's status triggers an action in another device, regardless of device brand (e.g., "If motion sensor detects motion between sunset and sunrise, then turn on hallway light").
+
+**FR4: Alerts & Notifications**
+*   FR4.1: The system SHALL allow users to configure alerts based on device status (e.g., door left open, water leak detected, temperature exceeds a threshold).
+*   FR4.2: The system SHALL send configured alerts to designated users via a notification mechanism (e.g., push notification, email, SMS).
+
+**FR5: User Management & Access Control**
+*   FR5.1: The system SHALL support multiple user accounts per household.
+*   FR5.2: The system SHALL allow an administrator user to assign permissions (e.g., view only, control specific devices, full control) to other user accounts.
+
+**FR6: Status Feedback**
+*   FR6.1: The system SHALL confirm to the user when a control command has been successfully sent to a device.
+*   FR6.2: The system SHALL display the last known or current operational status (e.g., on, off, locked, 72°F) for each connected device.
+
+---
+
+### **Non-Functional Requirements**
+
+**NFR1: Usability & Accessibility**
+*   NFR1.1: The system's user interface SHALL be designed for clarity and simplicity, enabling primary tasks to be completed by a non-technical user with minimal instruction.
+*   NFR1.2: The system's user interface SHALL comply with WCAG 2.1 Level AA guidelines to accommodate users with different physical and visual abilities.
+
+**NFR2: Reliability & Availability**
+*   NFR2.1: The system's core control and monitoring functions SHALL be available for 99.5% of the time in a rolling 30-day period, excluding scheduled maintenance.
+*   NFR2.2: The system SHALL maintain local control of devices (within the home network) during a loss of internet connectivity.
+
+**NFR3: Performance**
+*   NFR3.1: The system SHALL update the status of a device in the user interface within 5 seconds of a state change.
+*   NFR3.2: The system SHALL provide visual feedback for a user-initiated control command within 2 seconds.
+
+**NFR4: Compatibility**
+*   NFR4.1: The system SHALL be accessible from recent versions of major mobile and desktop operating systems (e.g., iOS, Android, Windows, macOS) via a dedicated application or web browser.
+*   NFR4.2: The system SHALL support integration with devices from multiple manufacturers.
+
+**NFR5: Security & Privacy**
+*   NFR5.1: The system SHALL require user authentication before granting access to device monitoring and control.
+*   NFR5.2: All remote communication between the user and the system SHALL be encrypted using industry-standard protocols (e.g., TLS 1.2+).
+*   NFR5.3: The system SHALL provide users with a clear privacy policy detailing what operational data is collected, how it is used, and how it is stored.
+
+**NFR6: Cost & Implementation**
+*   NFR6.1: The system's upfront hardware and software costs SHALL be targeted for a typical consumer household budget, excluding the cost of individual smart devices.
+*   NFR6.2: The system SHALL not require structural modifications to the home for installation.

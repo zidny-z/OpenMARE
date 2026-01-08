@@ -1,0 +1,117 @@
+# **Software Requirements Specification (SRS)**
+## **Health & Wellness Activity Tracker Mobile Application**
+
+**Document Version:** 1.0  
+**Date:** October 26, 2023  
+**Prepared by:** System Analyst Intern
+
+---
+
+### **1. Introduction**
+
+#### **1.1 Purpose**
+This document specifies the requirements for a mobile application designed to help users track health-related activities, set personal goals, and visualize their progress. The system aims to motivate users through gamification elements like streaks and badges while maintaining simplicity and ease of use.
+
+#### **1.2 Scope**
+The system is a mobile application that enables users to define health goals, log daily activities, track progress through visualizations, and receive motivational notifications. The scope includes user onboarding, activity logging, progress tracking, goal management, and notification systems. Integration with external health data sources (like step counters) is considered but implementation details will be determined during MVP scoping.
+
+#### **1.3 Definitions & Acronyms**
+- **Activity:** User-defined health-related action (walking, drinking water, meditating, sleeping)
+- **Progress:** User's advancement toward self-defined goals
+- **Goal:** User-defined target with type, value, and recurrence period
+- **Streak:** Consecutive days of activity logging or goal progress
+- **MVP:** Minimum Viable Product
+- **SRS:** Software Requirements Specification
+
+#### **1.4 References**
+- Assumptions and requirements provided in the input specification
+- Platform-specific guidelines (Apple App Store, Google Play Store)
+
+---
+
+### **2. Functional Requirements**
+
+#### **2.1 User Onboarding & Goal Setup**
+- **FR1.1:** The system SHALL allow a new user to create a personal account using email address and password.
+- **FR1.2:** The system SHALL present a guided setup workflow to new users that must be completed before accessing main features, including creation of at least one personal health goal.
+- **FR1.3:** The system SHALL provide input fields for users to define: goal type (selectable from predefined options), target value (numeric input with unit display), and recurrence period (daily or weekly selection).
+
+#### **2.2 Activity Logging**
+- **FR2.1:** The system SHALL provide a "Log Activity" button or equivalent control on the main screen for manual activity logging.
+- **FR2.2:** The system SHALL display different input interfaces based on activity type:
+  - Numeric keypad with unit display for quantitative activities (water intake)
+  - Timer with start/stop controls for duration-based activities (meditation)
+  - Step counter integration toggle for walking activities
+- **FR2.3:** The system SHALL automatically record the current date and time with each logged activity entry and associate it with the user-provided quantified value.
+
+#### **2.3 Progress Tracking & Visualization**
+- **FR3.1:** The system SHALL calculate progress percentage as (current value / target value) × 100% and display both absolute values (e.g., "1.5L / 2.0L") and visual progress indicators.
+- **FR3.2:** The system SHALL display a line or bar chart showing logged values for each goal over a user-selectable period (default: 7 days).
+- **FR3.3:** The system SHALL increment a streak counter when a user logs any progress toward a specific goal on consecutive days and reset to zero when a day is missed.
+- **FR3.4:** The system SHALL automatically award digital badges when users achieve: 7-day streak, 30-day streak, goal met 10 times, and goal met 50 times. Badges SHALL be displayed in a dedicated achievements section.
+
+#### **2.4 Personalization & Management**
+- **FR4.1:** The system SHALL provide "Edit Goal," "Delete Goal," and "Create New Goal" functions accessible from the goals management screen. Deactivated goals SHALL be archived but accessible for historical reference.
+- **FR4.2:** The system SHALL display separate lists for active goals (with current progress) and inactive goals (with historical data) in the goals management screen.
+
+#### **2.5 Notifications**
+- **FR5.1:** The system SHALL provide time picker controls and frequency selectors (daily, weekdays, custom) for users to configure activity logging reminders.
+- **FR5.2:** The system SHALL include a master toggle in settings to enable/disable all notification types.
+- **FR5.3:** The system SHALL trigger push notifications containing reminder text (e.g., "Time to log your water intake!") at user-scheduled times when notifications are enabled.
+
+---
+
+### **3. Non-Functional Requirements**
+
+#### **3.1 Usability & User Experience**
+- **NFR1.1:** 90% of first-time users in usability testing SHALL complete onboarding and log their first activity within 3 minutes without assistance.
+- **NFR1.2:** All primary functions (activity logging, progress viewing, goal management) SHALL be reachable within two taps from the main screen, verified through navigation flow testing.
+- **NFR1.3:** All user-facing text SHALL score at or below 8th-grade reading level on Flesch-Kincaid tests and include motivational phrases (e.g., "Great job!" after logging).
+
+#### **3.2 Performance**
+- **NFR2.1:** The application SHALL display the main screen within 2 seconds from cold start on devices meeting minimum specifications (2GB RAM, iOS 14+/Android 10+).
+- **NFR2.2:** All user interface interactions SHALL provide visual feedback (button press animation, loading indicator) within 500 milliseconds, measured under normal network conditions.
+
+#### **3.3 Data Management & Privacy**
+- **NFR3.1:** User credentials SHALL be encrypted using AES-256, and all data transmissions SHALL use TLS 1.2 or higher.
+- **NFR3.2:** The system SHALL require users to view and acknowledge the privacy policy before completing account creation, with acceptance logged.
+- **NFR3.3:** The application SHALL pass automated compliance checks for Apple App Store Guidelines Section 5 and Google Play Store Data Safety Section requirements.
+
+#### **3.4 Reliability**
+- **NFR4.1:** User data SHALL persist between application sessions with 99.9% reliability, verified through 100 test cycles of force-closing and reopening the application.
+- **NFR4.2:** Scheduled notifications SHALL be delivered within ±5 minutes of the scheduled time on 99% of days under normal device conditions (not in battery saver mode).
+
+#### **3.5 Compatibility**
+- **NFR5.1:** The initial release SHALL support either iOS 14+ or Android 10+ as determined by the feasibility analysis, with screen compatibility for devices with 4.7" displays and larger.
+- **NFR5.2:** The application SHALL maintain core functionality in offline mode for up to 24 hours, with data syncing automatically when connectivity is restored.
+
+---
+
+### **4. Constraints & Assumptions**
+
+#### **4.1 Constraints**
+- Development must be completed within the approved MVP budget of [TBD] and timeline of [TBD] months
+- Initial release will target only one mobile platform (iOS or Android) based on feasibility analysis
+- Integration with native health platforms (Apple Health, Google Fit) is out of scope for MVP
+- Social features, data export, and multi-user accounts are explicitly excluded from MVP scope
+- The application must not require continuous background location services
+
+#### **4.2 Assumptions**
+- Users have access to a compatible mobile device with internet connectivity for initial setup
+- Users understand basic health measurements (liters, steps, minutes)
+- "Activities" refer specifically to the four example types: walking, drinking water, meditating, sleeping
+- Users will manually log most activities; automatic tracking is limited to basic step counting integration
+- Notifications will be effective motivators for user engagement
+- The application will be used primarily in a personal, non-clinical context
+
+#### **4.3 Dependencies**
+- Availability of development resources within budget constraints
+- Approval from platform app stores for health-related applications
+- User acceptance of data collection practices as outlined in privacy policy
+- Successful integration with mobile notification services (Apple Push Notification Service/Firebase Cloud Messaging)
+
+---
+
+**Document Approval:**  
+System Analyst Intern: ________________________ Date: ___________  
+Project Manager: _____________________________ Date: ___________

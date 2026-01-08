@@ -1,0 +1,251 @@
+# Software Requirements Specification (SRS)
+## For: Early Learning Classroom Management System (ELCMS)
+
+---
+
+## 1. Introduction
+
+### 1.1 Purpose
+This document specifies the requirements for the Early Learning Classroom Management System (ELCMS), a digital platform designed to facilitate communication and assignment management between teachers, young students (ages 4-8), and parents/guardians. The system aims to provide an age-appropriate interface for students while maintaining robust functionality for teachers and parents.
+
+### 1.2 Scope
+The ELCMS will provide:
+- A centralized content hub for classroom materials
+- Assignment creation, submission, and feedback mechanisms
+- Age-appropriate student interfaces with minimal text reliance
+- Parent communication and monitoring capabilities
+- Secure access control and user management
+
+### 1.3 Definitions and Acronyms
+- **Teacher**: Primary system administrator for one or more classes
+- **Student**: Young learner (ages 4-8) who submits work and views materials
+- **Parent/Guardian**: Caregiver who monitors student progress and communicates with teacher
+- **Class**: Discrete group of students managed by a single teacher
+- **Assignment**: Task requiring student response, which may include file uploads or text
+
+### 1.4 References
+- User assumptions document (provided)
+- Accessibility guidelines (WCAG 2.1 Level AA)
+- Data protection regulations (FERPA, COPPA compliance)
+
+---
+
+## 2. Functional Requirements
+
+### 2.1 Centralized Content Hub (FR1)
+**FR1.1**: The system SHALL provide each Teacher with a private digital class homepage for each managed class, accessible only to registered users of that class.
+
+**FR1.2**: The system SHALL enable Teachers to post, edit, and delete lesson materials including:
+- Video files (maximum size: 500MB per file)
+- Document files (PDF, DOC, DOCX; maximum size: 50MB per file)
+- Image files (JPG, PNG, GIF; maximum size: 20MB per file)
+- Website URLs with preview capability
+- Text announcements
+
+**FR1.3**: The system SHALL present all available lesson materials to Student users in a single, scrollable view with visual thumbnails for each item.
+
+### 2.2 Assignment Submission & Feedback (FR2)
+**FR2.1**: The system SHALL allow Teachers to create assignments with:
+- Required title field (maximum 100 characters)
+- Instructions field (maximum 1000 characters)
+- Optional due date with time selection
+- File attachment capability (same specifications as FR1.2)
+
+**FR2.2**: The system SHALL enable Student users to submit work by:
+- Uploading files (images, video, audio, documents; maximum total size: 100MB per submission)
+- Entering text into a response field (maximum 2000 characters)
+- Confirming submission with a single, large confirmation button
+
+**FR2.3**: The system SHALL provide Teachers with a consolidated submission view showing:
+- List of all students in the class
+- Submission status (submitted/not submitted) for each student
+- Submission timestamp for submitted work
+- One-click access to review each submission
+
+**FR2.4**: The system SHALL allow Teachers to provide feedback through:
+- Text comment field (maximum 500 characters)
+- Selection from at least 10 pre-defined positive visual indicators (digital stickers/stamps)
+- Option to mark assignment as "completed" or "needs revision"
+
+**FR2.5**: The system SHALL display Teacher feedback to the corresponding Student user within 5 seconds of the Teacher saving the feedback.
+
+### 2.3 Student-Facing Interface & Routine (FR3)
+**FR3.1**: The Student interface SHALL use:
+- Navigation icons with minimum dimensions of 64x64 pixels
+- Color-coded sections with consistent color schemes
+- Audio cues for successful actions (optional toggle by Teacher)
+- No navigation requiring reading beyond 3-word labels
+
+**FR3.2**: The system SHALL provide Student users with a visual assignment board showing:
+- Current assignments (due within 7 days) in yellow
+- Overdue assignments (past due date) in red
+- Completed assignments (submitted and reviewed) in green
+- Each assignment represented by a distinct icon
+
+**FR3.3**: The system SHALL maintain a "My Work" section for Student users showing:
+- Chronological list of submitted assignments
+- Teacher feedback (stamps and comments)
+- Date of submission and review
+- Option to view original submission
+
+### 2.4 Parent-Facing Interface & Communication (FR4)
+**FR4.1**: The system SHALL provide Parent users with a dashboard showing:
+- Latest class announcements (last 30 days)
+- Summary of child's assignments (completed/pending/overdue counts)
+- Recent Teacher feedback (last 10 items)
+- Upcoming due dates (next 7 days)
+
+**FR4.2**: The system SHALL enable Teachers to send announcements to all Parents in a class with:
+- Required subject field (maximum 50 characters)
+- Message body (maximum 2000 characters)
+- Optional file attachment (same specifications as FR1.2)
+- Delivery confirmation showing number of Parents who viewed the announcement
+
+**FR4.3**: The system SHALL provide a private messaging system between Teachers and individual Parents featuring:
+- Threaded conversation view
+- Message timestamping
+- Read receipts
+- File attachment capability (same specifications as FR1.2)
+- Notification system for new messages
+
+### 2.5 Access Control & User Management (FR5)
+**FR5.1**: The system SHALL require authentication through:
+- Username/password for Teachers and Parents
+- Simplified login for Students (picture-based or 4-digit PIN)
+- Session timeout after 60 minutes of inactivity
+- Secure password recovery mechanism
+
+**FR5.2**: The system SHALL allow Teachers to manage class membership by:
+- Generating unique registration codes for Students and Parents
+- Bulk import of users via CSV file (maximum 50 users per import)
+- Manual addition of individual users
+- Removal of users from class with data retention options
+
+**FR5.3**: The system SHALL enforce data isolation where:
+- Users can only access data for classes where they are registered
+- Cross-class data visibility is prohibited
+- Teachers can only access data for classes they manage
+- System administrators have access only to technical logs, not user content
+
+---
+
+## 3. Non-Functional Requirements
+
+### 3.1 Usability & User Experience (NFR1)
+**NFR1.1**: The Student interface SHALL meet the following criteria:
+- Minimum touch target size of 44x44 pixels
+- Color contrast ratio of at least 4.5:1 for text and interactive elements
+- Consistent navigation placement across all screens
+- Visual feedback for all interactions (color change, animation, or sound)
+
+**NFR1.2**: The system SHALL achieve a System Usability Scale (SUS) score of at least 75 for Parent and Student users when tested with first-time users without training.
+
+**NFR1.3**: The system SHALL implement:
+- Input validation with clear error messages using icons and minimal text
+- Auto-save functionality for text inputs every 30 seconds
+- Confirmation dialogs for destructive actions (delete, remove, archive)
+- Multi-tap protection preventing duplicate submissions within 2 seconds
+
+### 3.2 Performance & Compatibility (NFR2)
+**NFR2.1**: The system SHALL be fully responsive and functional on:
+- Smartphones (minimum screen width: 320px)
+- Tablets (screen widths from 768px to 1024px)
+- Desktop browsers (Chrome, Safari, Firefox latest versions)
+- All interfaces shall maintain readability and functionality without horizontal scrolling
+
+**NFR2.2**: The system SHALL perform within these parameters:
+- Page load time under 3 seconds on 3G connections (100ms latency, 750kbps throughput)
+- File upload initiation within 2 seconds on same connection
+- Real-time updates (message notifications, new assignments) delivered within 10 seconds
+- 99% uptime during school hours (7:00 AM to 6:00 PM local time)
+
+### 3.3 Security & Privacy (NFR3)
+**NFR3.1**: The system SHALL implement:
+- No public user directories or search functionality
+- All user profiles private by default with no configuration options
+- Communication limited to system-defined channels only
+- Audit logging of all access to student data
+
+**NFR3.2**: The system SHALL restrict communication to:
+- Teacher-to-Parent (individual)
+- Teacher-to-Parents (group announcements)
+- No Student-to-Student communication
+- No Parent-to-Parent communication
+- All messages stored encrypted and accessible only to participants
+
+**NFR3.3**: The system SHALL employ:
+- TLS 1.2+ encryption for all data in transit
+- AES-256 encryption for data at rest
+- Secure key management with regular rotation
+- Compliance with FERPA and COPPA requirements
+- Data retention policy with automatic deletion of student data 1 year after class end date
+
+### 3.4 Operational & Business (NFR4)
+**NFR4.1**: The system SHALL enable Teachers to:
+- Create a new class with basic setup in under 5 minutes
+- Add 20 students with associated Parents in under 30 minutes using bulk import
+- Generate and distribute registration codes in a single action
+- Access setup tutorials and templates for common classroom scenarios
+
+**NFR4.2**: The pricing model SHALL feature:
+- Fixed monthly subscription per Teacher account
+- Unlimited classes per Teacher account
+- Unlimited Students and Parents per class
+- No additional fees for storage up to 50GB per Teacher account
+- Clear, predictable billing with 30-day notice for price changes
+- Tiered pricing for school/district deployments available
+
+---
+
+## 4. Constraints & Assumptions
+
+### 4.1 Constraints
+1. **Technical Constraints**
+   - Must support iOS 12+ and Android 8+ for mobile applications
+   - Must function without requiring browser plugins or extensions
+   - Maximum individual file upload size: 500MB
+   - Total storage per Teacher account: 50GB standard
+
+2. **Regulatory Constraints**
+   - Must comply with FERPA for educational records
+   - Must comply with COPPA for children under 13
+   - Data must be stored within country of operation unless explicit consent obtained
+   - Must provide data export capability for student records
+
+3. **Business Constraints**
+   - Initial development budget: $250,000
+   - Time to market: 6 months from project approval
+   - Must integrate with existing school authentication systems (optional phase 2)
+   - Must support English language initially, with localization framework for future languages
+
+### 4.2 Assumptions
+1. **User Base Assumptions**
+   - Teachers are technically proficient enough to perform basic computer operations
+   - Students have emerging literacy skills but may not be fluent readers
+   - Parents have access to smartphones or computers with internet connectivity
+   - School administrators will provide initial teacher training
+
+2. **Technical Assumptions**
+   - Users have access to devices with modern web browsers
+   - Schools have basic IT infrastructure to support system deployment
+   - Internet connectivity is available, though sometimes at low bandwidth
+   - Mobile data usage will be optimized for cost-sensitive users
+
+3. **Operational Assumptions**
+   - Teachers will manage their own class rosters
+   - Parents will assist young students with initial login setup
+   - School policies regarding digital communication will be established separately
+   - System will be used primarily during school hours with occasional evening parent access
+
+4. **Evolution Assumptions**
+   - Additional features (gradebooks, attendance) may be added in future versions
+   - User base may expand to older student groups with modified interfaces
+   - Integration with other educational platforms may be requested
+   - Mobile applications may be developed following web platform success
+
+---
+
+**Document Version:** 1.0  
+**Last Updated:** October 26, 2023  
+**Status:** Draft for Review  
+**Approval:** Pending stakeholder review

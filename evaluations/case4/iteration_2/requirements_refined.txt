@@ -1,0 +1,72 @@
+# Food Ordering System: Requirements Specification
+
+## Assumptions
+1. The system will be a software application accessible via web browsers and/or native mobile applications.
+2. The system will interface with external services for payment processing and, optionally, for sending notifications (SMS/email).
+3. Restaurant staff will have access to a separate interface for managing orders and menus.
+4. "Real-time" tracking refers to status updates being visible to the customer within one minute of the status being changed by the restaurant.
+
+## Functional Requirements
+
+**FR1: Menu Browsing & Selection**
+1.1. The system SHALL display a list of participating restaurants to the customer.
+1.2. The system SHALL display a restaurant's menu, organized into categories.
+1.3. For each menu item, the system SHALL display its name, description, price, and an indicator of availability.
+1.4. The system SHALL allow the customer to apply filters (e.g., by dietary tag, price range) to the menu items.
+1.5. The system SHALL allow the customer to search for menu items by name or keyword.
+1.6. The system SHALL allow the customer to select a menu item and specify a quantity for their order.
+1.7. The system SHALL allow the customer to add special instructions or dietary modifications for a selected menu item.
+
+**FR2: Order Management**
+2.1. The system SHALL maintain a shopping cart that displays all selected items, their quantities, special instructions, subtotal, taxes, and fees.
+2.2. The system SHALL allow the customer to modify the contents of their shopping cart before checkout.
+2.3. The system SHALL require the customer to provide a valid delivery address and contact phone number to place an order.
+2.4. The system SHALL calculate and display an estimated delivery time before the customer confirms the order.
+2.5. The system SHALL generate a unique order confirmation number for each placed order.
+
+**FR3: Payment Processing**
+3.1. The system SHALL accept payment via major credit/debit cards and digital wallets (e.g., Apple Pay, Google Pay).
+3.2. The system SHALL securely transmit payment information to a certified payment processor.
+3.3. The system SHALL display a payment receipt to the customer upon successful transaction.
+
+**FR4: Order Tracking & Communication**
+4.1. The system SHALL display the status of a customer's active order. The status SHALL be one of: Confirmed, Preparing, Out for Delivery, Delivered.
+4.2. The system SHALL automatically notify the customer via SMS or email when the order status changes.
+4.3. The system SHALL provide the customer with a view to see all their past orders.
+4.4. The system SHALL allow the customer to initiate a reorder of any past order with a single action.
+
+**FR5: Restaurant Back-Office Management**
+5.1. The system SHALL provide authorized restaurant staff with an interface to update menu item availability.
+5.2. The system SHALL provide restaurant staff with an interface to view new orders and update their status (Confirmed → Preparing → Out for Delivery → Delivered).
+5.3. The system SHALL display suggested add-on items to restaurant staff during manual order entry (to support phone orders).
+
+## Non-Functional Requirements
+
+**NFR1: Usability & Compatibility**
+1.1. The system's customer interface SHALL be usable on screen sizes corresponding to mobile phones, tablets, and desktop computers.
+1.2. A first-time customer SHALL be able to complete an order from restaurant selection to payment confirmation in under five minutes.
+
+**NFR2: Performance**
+2.1. The system SHALL display a restaurant's menu within three seconds of the customer's request, 95% of the time under normal load.
+2.2. The system SHALL process a payment transaction and provide a confirmation result within ten seconds.
+
+**NFR3: Reliability & Availability**
+3.1. The system SHALL be available for customer orders 99.5% of the time during published business hours.
+3.2. The system SHALL prevent the loss of a customer's shopping cart contents due to a page refresh or accidental navigation.
+
+**NFR4: Security & Compliance**
+4.1. The system SHALL not store full credit card numbers or CVV codes on its own servers.
+4.2. The system SHALL transmit all sensitive data (including personal information and payment details) using industry-standard encryption (TLS 1.2 or higher).
+4.3. The system SHALL comply with relevant data privacy regulations (e.g., GDPR, CCPA) regarding the collection and use of customer data.
+4.4. The system SHALL require user authentication for restaurant staff to access the order management interface.
+
+**NFR5: Integrability**
+5.1. The system SHALL provide a method for restaurant staff to receive audible or visual alerts for new orders without requiring constant manual refresh of the interface.
+
+Issues raised by checker:
+FAIL
+1. Missing requirement: The SRS does not specify functional requirements for system administrators or a back-office administrative interface. There is no mention of how user accounts (both customers and restaurant staff) are created, approved, or deactivated by an administrative role, nor how system-wide issues, disputes, or promotions are managed.
+2. Missing requirement: There is no explicit requirement for handling order modifications or cancellations by the customer after placement, nor for the restaurant's ability to reject or modify an order due to unavailability. FR3 and FR5 imply a linear flow but lack specifications for these critical exception paths.
+3. Ambiguity: Requirement NFR4.1 states "The system SHALL have an average System Usability Scale (SUS) score of 80 or higher." This is ambiguous as the SUS is a post-deployment measurement tool, not a design requirement. It does not specify *how* this score will be achieved or validated during development, making it non-verifiable as a requirement.
+4. Inconsistency: Constraint #3 states "The system must support multiple languages (English, Spanish, French) in phase 2." However, there are no corresponding functional or non-functional requirements (e.g., under Usability or a separate Internationalization section) that define what "support" entails (e.g., UI translation, content localization, currency/date formats). This creates a gap between the constraint and the specified requirements.
+5. Missing requirement: The SRS lacks explicit requirements for the delivery personnel/driver interface and workflow. While FR5.4 mentions contacting delivery personnel and Assumption #5 mentions drivers using their own apps, there are no functional requirements for assigning orders to drivers, providing them with order details, or allowing them to update their status (e.g., "Picked Up"). This is a core component of a food ordering system.

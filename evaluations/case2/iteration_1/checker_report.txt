@@ -1,0 +1,4 @@
+FAIL
+1. Missing requirement: The SRS does not specify how a Student user's account is linked to a Parent/Guardian account, which is critical for the Parent's dashboard (FR4.1) and communication features (FR4.3). The user management section (FR5.2) mentions generating codes but does not define the association mechanism.
+2. Ambiguity: Requirement FR2.5 states feedback is displayed "within 5 seconds of the Teacher saving the feedback." This is ambiguous regarding whether this is a real-time push notification or a page refresh requirement, and it does not specify if the student must be actively logged in to receive it.
+3. Inconsistency: Constraint 4.1 states "Maximum individual file upload size: 500MB," but functional requirements FR1.2 and FR2.1 specify lower maximum sizes for specific file types (e.g., 50MB for documents, 20MB for images). The global constraint contradicts the specific functional limits.
