@@ -21,7 +21,8 @@ pip install -r requirements.txt
 
 This project is for research purposes only and not suited for production use.
 The reference for this project is the paper:
-"OpenMARE: A Framework for Multi-Agent Reinforcement Learning"
+"MARE: Multi-Agents Collaboration Framework for
+Requirements Engineering"
 by the authors of this project
 [https://arxiv.org/abs/2405.03256](https://arxiv.org/abs/2405.03256)
 
